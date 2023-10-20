@@ -4,7 +4,7 @@ WORKDIR /opt/app/
 
 COPY . .
 
-RUN npm install
+ENV PORT=80
 
-CMD [ "npm", "start" ]
+CMD [ "sh", "entrypoint.sh" ]
 
