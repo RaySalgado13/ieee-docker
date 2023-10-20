@@ -1,0 +1,1 @@
+sudo docker run -dp 80:80 --env-file ~/creds/.env --name ieeecicd 107777906079.dkr.ecr.us-east-2.amazonaws.com/ieeecicd:latest
