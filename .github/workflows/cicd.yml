@@ -35,7 +35,8 @@ jobs:
             local-image: ieeecicd
             image: ieeecicd:latest, ieeecicd:latest
 
-        
+        - name: Stop container
+          run: sh stop-container.sh
 
         - name: ECR auth
           run: aws ecr get-login-password --region us-east-2 | sudo docker login --username AWS --password-stdin 107777906079.dkr.ecr.us-east-2.amazonaws.com
