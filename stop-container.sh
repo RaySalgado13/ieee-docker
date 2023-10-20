@@ -1,2 +1,2 @@
-sudo docker stop ieeecicd 
-sudo docker rm ieeecicd
+docker stop $(docker ps -q -f name=ieeecicd)
+
