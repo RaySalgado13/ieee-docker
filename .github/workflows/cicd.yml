@@ -1,0 +1,34 @@
+name: Docker build and push to ECR
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true || github.event_name == 'push'
+
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+
+        - name: build docker image
+          run: docker build -t ieeecicd .
+
+        - name: Push to ECR
+          id: ecr
+          uses: jwalton/gh-ecr-push@v1
+          with:
+            access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            region: us-east-2
+            local-image: ieeecicd
+            image: ieeecicd:latest, ieeecicd:latest
+
+
