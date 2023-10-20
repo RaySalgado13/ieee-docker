@@ -21,6 +21,10 @@ jobs:
         - name: build docker image
           run: sudo docker build -t ieeecicd .
 
+        - run: |
+            pwd
+            whoami
+
         - name: Push to ECR
           id: ecr
           uses: jwalton/gh-ecr-push@v1
